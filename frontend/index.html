@@ -2,16 +2,115 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/jpeg" href="/yamlak.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Yamlak Negash - NeonArchitect Portfolio</title>
+    <meta name="title" content="Yamlak Negash - NeonArchitect Portfolio" />
+    <meta name="description" content="Official portfolio of Yamlak Negash. Full-Stack Software Engineer specializing in Architecture and AI." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yamneg-myportfolio.vercel.app/" />
+    <meta property="og:title" content="Yamlak Negash - NeonArchitect" />
+    <meta property="og:description" content="Building the next generation of scalable and AI-driven solutions." />
+    <meta property="og:image" content="/yamlak.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://yamneg-myportfolio.vercel.app/" />
+    <meta property="twitter:title" content="Yamlak Negash - NeonArchitect" />
+    <meta property="twitter:description" content="Building the next generation of scalable and AI-driven solutions." />
+    <meta property="twitter:image" content="/yamlak.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    <title>Yamlak Negash - NeonArchitect</title>
+    
+    <style>
+      :root {
+        --preloader-bg: #060e20;
+        --preloader-accent: #0070eb;
+      }
+      #preloader {
+        position: fixed;
+        inset: 0;
+        background: var(--preloader-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+      }
+      .preloader-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 2px solid var(--preloader-accent);
+        padding: 5px;
+        position: relative;
+        animation: pulse 2s infinite ease-in-out;
+        box-shadow: 0 0 30px rgba(0, 112, 235, 0.3);
+      }
+      .preloader-avatar img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        filter: grayscale(20%);
+      }
+      .preloader-bar {
+        width: 180px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        margin-top: 30px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+      }
+      .preloader-progress {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: var(--preloader-accent);
+        transform: translateX(-100%);
+        animation: progress 1.5s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.05); opacity: 1; }
+      }
+      @keyframes progress {
+        0% { transform: translateX(-100%); }
+        50% { transform: translateX(0); }
+        100% { transform: translateX(100%); }
+      }
+      .loaded #preloader {
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
   </head>
   <body>
+    <div id="preloader">
+      <div class="preloader-avatar">
+        <img src="/yamlak.jpg" alt="Profile" />
+      </div>
+      <div class="preloader-bar">
+        <div class="preloader-progress"></div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.body.classList.add('loaded');
+        }, 800);
+      });
+    </script>
   </body>
 </html>
