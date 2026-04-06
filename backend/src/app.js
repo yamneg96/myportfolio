@@ -25,6 +25,8 @@ app.use(
       'http://localhost:5174', // CMS (Vite)
       'https://yamlak-negash.vercel.app',
       'https://yamlak-cms.vercel.app',
+      'https://myportfolio-iota-six-18.vercel.app',
+      'https://myportfolio-iota-six-18.vercel.app',
       process.env.FRONTEND_URL,
       process.env.CMS_URL,
     ].filter(Boolean),

@@ -14,7 +14,10 @@ const getAbout = asyncHandler(async (req, res) => {
   if (!about) {
     about = {
       bio: '',
+      title: '',
       summary: '',
+      email: '',
+      location: '',
       avatar: { url: '', publicId: '' },
       resumeUrl: '',
       socialLinks: { github: '', linkedin: '', twitter: '', website: '' },

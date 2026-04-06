@@ -65,8 +65,11 @@ export interface Skill {
 // ─── About ──────────────────────────────────────────────────
 export interface About {
   _id?: string;
+  title: string;
   bio: string;
   summary: string;
+  email: string;
+  location: string;
   avatar: {
     url: string;
     publicId: string;

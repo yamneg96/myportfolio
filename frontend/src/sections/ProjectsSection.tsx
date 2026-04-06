@@ -57,8 +57,8 @@ export function ProjectsSection() {
       ) : (
         <div className="relative">
           <div className="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-8 px-8 md:px-[max(2rem,calc((100vw-80rem)/2))] pb-12 pt-4">
-            {projects.map((project, idx) => (
-              <ProjectCard key={project._id || idx} project={project} index={idx} />
+            {projects.filter(Boolean).map((project, idx) => (
+              <ProjectCard key={project?._id || idx} project={project} index={idx} />
             ))}
           </div>
           
@@ -94,10 +94,10 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             >
                 {/* Image */}
                 <div className="h-64 relative overflow-hidden bg-surface-container-high">
-                    {project.image?.url ? (
+                    {project?.image?.url ? (
                         <img 
                             src={project.image.url} 
-                            alt={project.title} 
+                            alt={project.title || 'Project image'} 
                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
                         />
                     ) : (
@@ -111,11 +111,11 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                 {/* Content */}
                 <div className="p-8 flex flex-col flex-grow">
                     <span className={`text-[10px] font-mono ${theme.text} uppercase tracking-widest mb-2`}>
-                        {project.techStack[0] || 'Project'}
+                        {project?.techStack?.[0] || 'Project'}
                     </span>
-                    <h3 className="text-2xl font-headline font-bold mb-3 text-on-surface">{project.title}</h3>
+                    <h3 className="text-2xl font-headline font-bold mb-3 text-on-surface">{project?.title || 'Unknown Title'}</h3>
                     <p className="text-on-surface-variant text-sm mb-6 leading-relaxed flex-grow line-clamp-3">
-                        {project.description}
+                        {project?.description}
                     </p>
 
                     {/* Tech Stack Bubbles */}
@@ -135,7 +135,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                     {/* Links */}
                     <div className="flex items-center justify-between mt-auto">
                         <a 
-                            href={project.liveLink || project.githubLink || '#'} 
+                            href={project?.liveLink || project?.githubLink || '#'} 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className={`flex items-center ${theme.text} font-bold text-sm group/link`}
@@ -145,12 +145,12 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
                         </a>
                         
                         <div className="flex space-x-3 text-on-surface-variant">
-                             {project.githubLink && (
+                             {project?.githubLink && (
                                 <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="hover:text-on-surface transition-colors">
                                     <MaterialIcon icon="code" />
                                 </a>
                              )}
-                             {project.liveLink && (
+                             {project?.liveLink && (
                                 <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="hover:text-on-surface transition-colors">
                                     <MaterialIcon icon="open_in_new" />
                                 </a>
