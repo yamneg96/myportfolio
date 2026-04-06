@@ -292,11 +292,11 @@
     backdrop-filter: blur(20px);
   }
   .glass-card {
-    background: rgba(25, 37, 64, 0.6);
+    @apply bg-card;
     backdrop-filter: blur(16px);
   }
   .glass-panel {
-    background: rgba(25, 37, 64, 0.6);
+    @apply bg-surface-container-low/80;
     backdrop-filter: blur(20px);
   }
   .primary-gradient {

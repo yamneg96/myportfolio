@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { SideNav } from '@/components/SideNav';
+import { BottomNav } from '@/components/BottomNav';
 import { Footer } from '@/components/Footer';
 import { useLenis } from '@/animations/useLenis';
 
@@ -16,6 +17,7 @@ export function MainLayout({ children }: MainLayoutProps) {
     <div className="min-h-screen bg-surface text-on-surface selection:bg-primary/30 selection:text-primary overflow-x-hidden pt-8 relative">
       <Navbar />
       <SideNav />
+      <BottomNav />
 
         {/* Global Background Elements */}
         {/* We keep the global gradients minimal, sections can define their own */}
@@ -24,7 +26,7 @@ export function MainLayout({ children }: MainLayoutProps) {
             <div className="absolute bottom-[20%] left-[-5%] w-[400px] h-[400px] bg-tertiary/5 blur-[100px] rounded-full"></div>
         </div>
 
-      <main className="lg:ml-20 flex-1">
+      <main className="lg:ml-20 flex-1 pb-24 lg:pb-0">
         {children}
       </main>
       

@@ -6,6 +6,7 @@ import { GradientButton } from '@/components/GradientButton';
 import { MaterialIcon } from '@/components/MaterialIcon';
 import { useAbout, useSkills } from '@/hooks/usePortfolioData';
 import { staggerContainer, fadeInUp, scaleIn } from '@/animations/variants';
+import { toast } from 'sonner';
 
 export function AboutSection() {
   const { data: aboutData, isLoading: isAboutLoading } = useAbout();
@@ -61,7 +62,7 @@ export function AboutSection() {
                     <GradientButton>Download CV</GradientButton>
                 </a>
             ) : (
-                <GradientButton disabled>Download CV</GradientButton>
+                <GradientButton onClick={() => toast.info("Resume document is being prepared. Please check back soon!")}>Download CV</GradientButton>
             )}
             
             <button 

@@ -97,18 +97,18 @@ export function ExperienceSection() {
               <div key={exp._id} className="timeline-item relative flex flex-col md:flex-row items-start md:items-center justify-between md:odd:flex-row-reverse group">
                 
                 {/* Node Icon */}
-                <div className={`absolute -left-10 md:static flex items-center justify-center w-10 h-10 rounded-full border ${theme.border} bg-surface z-10 shrink-0 md:order-1 transition-transform group-hover:scale-110 duration-300 ${theme.bg}`}>
+                <div className={`absolute -left-10 md:static flex items-center justify-center w-10 h-10 rounded-full border ${theme.border} bg-surface-container-high z-10 shrink-0 md:order-1 transition-transform group-hover:scale-110 duration-300 ${theme.bg}`}>
                   <MaterialIcon icon={theme.icon} className={`${theme.text} text-sm`} filled />
                 </div>
 
                 {/* Content Card */}
-                <div className={`w-full md:w-[calc(50%-3rem)] md:px-4`}>
+                <div className="w-full md:w-[calc(50%-3rem)] md:px-4">
                  <GlassCard className={`p-8 ${theme.hover} transition-all duration-500`}>
                   <div className="flex items-center justify-between mb-3 border-b border-outline-variant/10 pb-3">
                     <time className={`font-headline font-bold ${theme.text}`}>
                         {formatDate(exp.startDate, exp.endDate)}
                     </time>
-                    <span className="text-[10px] font-mono tracking-widest text-on-surface-variant uppercase bg-surface-container-highest px-2 py-1 rounded">
+                    <span className="text-[10px] font-mono tracking-widest text-on-surface-variant uppercase bg-surface-container-high px-2 py-1 rounded">
                       {exp.company}
                     </span>
                   </div>

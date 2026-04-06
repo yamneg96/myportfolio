@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner';
 import { MainLayout } from '@/layouts/MainLayout';
 import { HeroSection } from '@/sections/HeroSection';
 import { AboutSection } from '@/sections/AboutSection';
@@ -9,6 +10,7 @@ import { ContactSection } from '@/sections/ContactSection';
 function App() {
   return (
     <MainLayout>
+      <Toaster position="bottom-right" richColors />
       <HeroSection />
       <AboutSection />
       <ExperienceSection />

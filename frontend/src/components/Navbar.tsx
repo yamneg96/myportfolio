@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { MaterialIcon } from './MaterialIcon';
 import { navSlideDown } from '@/animations/variants';
 import { usePortfolioStore } from '@/store/portfolioStore';
@@ -7,12 +7,13 @@ import { usePortfolioStore } from '@/store/portfolioStore';
 const navLinks = [
   { name: 'Home', id: 'hero' },
   { name: 'About', id: 'about' },
+  { name: 'Experience', id: 'experience' },
   { name: 'Projects', id: 'projects' },
   { name: 'Contact', id: 'contact' },
 ];
 
 export function Navbar() {
-  const { activeSection, mobileMenuOpen, toggleMobileMenu } = usePortfolioStore();
+  const { activeSection, setActiveSection } = usePortfolioStore();
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
@@ -35,13 +36,16 @@ export function Navbar() {
   };
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (mobileMenuOpen) {
-      toggleMobileMenu();
-    }
+    
+    setActiveSection(id);
+    
+    // Small delay to allow menu to start closing
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -82,50 +86,16 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Actions */}
         <div className="md:hidden flex items-center">
              <button
                 onClick={toggleTheme}
-                className="text-on-surface-variant hover:text-primary transition-all duration-300 mr-4"
+                className="text-on-surface-variant hover:text-primary transition-all duration-300"
               >
                 <MaterialIcon icon={theme === 'dark' ? 'light_mode' : 'dark_mode'} />
             </button>
-          <button
-            onClick={toggleMobileMenu}
-            className="text-on-surface-variant hover:text-on-surface transition-all duration-300"
-          >
-            <MaterialIcon icon={mobileMenuOpen ? 'close' : 'menu'} size="28px" />
-          </button>
         </div>
       </nav>
-
-      {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-surface-container-lowest/95 backdrop-blur-xl border-t border-outline-variant/30"
-          >
-             <div className="flex flex-col items-center py-6 space-y-6">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    className={`text-lg font-headline ${
-                      activeSection === link.id
-                        ? 'text-primary font-bold'
-                        : 'text-on-surface-variant'
-                    }`}
-                  >
-                    {link.name}
-                  </button>
-                ))}
-             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 }

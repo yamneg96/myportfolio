@@ -1,5 +1,6 @@
 import { useScrollReveal } from '@/animations/useScrollReveal';
 import { MaterialIcon } from '@/components/MaterialIcon';
+import { toast } from 'sonner';
 
 export function ContactSection() {
   const sectionRef = useScrollReveal<HTMLElement>({ y: 40, opacity: 0 });
@@ -21,7 +22,10 @@ export function ContactSection() {
           </p>
         </div>
         <div className="flex flex-col items-end gap-4">
-          <button className="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-headline font-bold flex items-center gap-3 transition-transform active:scale-95 shadow-xl shadow-primary-dim/20 px-8 py-4 rounded-xl text-lg">
+          <button 
+            onClick={() => toast.info("Resume document is being prepared. Please check back soon!")}
+            className="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-headline font-bold flex items-center gap-3 transition-transform active:scale-95 shadow-xl shadow-primary-dim/20 px-8 py-4 rounded-xl text-lg"
+          >
             <MaterialIcon icon="download" />
             Download Resume
           </button>

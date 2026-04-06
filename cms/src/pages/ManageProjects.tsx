@@ -12,10 +12,10 @@ import { Input } from '../components/ui/input';
 const projectSchema = z.object({
   title: z.string().min(1, 'Title is required'),
   description: z.string().min(10, 'Description needs at least 10 characters'),
-  liveUrl: z.string().url('Must be a valid URL').optional().or(z.literal('')),
-  githubUrl: z.string().url('Must be a valid URL').optional().or(z.literal('')),
-  technologies: z.string(), // We will split this string by comma in a real scenario
-  featured: z.boolean().default(false),
+  liveLink: z.string().url('Must be a valid URL').optional().or(z.literal('')),
+  githubLink: z.string().url('Must be a valid URL').optional().or(z.literal('')),
+  techStack: z.string(), 
+  featured: z.boolean(),
 });
 
 type ProjectFormValues = z.infer<typeof projectSchema>;
@@ -72,19 +72,19 @@ export default function ManageProjects() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                 <div className="p-6 bg-surface-container-low rounded-xl border-l-[3px] border-primary border-t border-r border-b border-white/5">
                     <p className="text-xs text-on-surface-variant font-label tracking-wider mb-2 font-bold uppercase">Total Repos</p>
-                    <h3 className="text-3xl font-headline font-bold">24</h3>
+                    <h3 className="text-3xl font-headline font-bold">{projects.length < 10 ? `0${projects.length}` : projects.length}</h3>
                 </div>
                 <div className="p-6 bg-surface-container-low rounded-xl border-l-[3px] border-tertiary border-t border-r border-b border-white/5">
                     <p className="text-xs text-on-surface-variant font-label tracking-wider mb-2 font-bold uppercase">Featured</p>
-                    <h3 className="text-3xl font-headline font-bold">06</h3>
+                    <h3 className="text-3xl font-headline font-bold">{projects.filter(p => p.featured).length < 10 ? `0${projects.filter(p => p.featured).length}` : projects.filter(p => p.featured).length}</h3>
                 </div>
                 <div className="p-6 bg-surface-container-low rounded-xl border-l-[3px] border-secondary border-t border-r border-b border-white/5">
                     <p className="text-xs text-on-surface-variant font-label tracking-wider mb-2 font-bold uppercase">Live Demos</p>
-                    <h3 className="text-3xl font-headline font-bold">18</h3>
+                    <h3 className="text-3xl font-headline font-bold">{projects.filter(p => p.liveLink).length < 10 ? `0${projects.filter(p => p.liveLink).length}` : projects.filter(p => p.liveLink).length}</h3>
                 </div>
                 <div className="p-6 bg-surface-container-low rounded-xl border-l-[3px] border-outline border-t border-r border-b border-white/5">
-                    <p className="text-xs text-on-surface-variant font-label tracking-wider mb-2 font-bold uppercase">Drafts</p>
-                    <h3 className="text-3xl font-headline font-bold">02</h3>
+                    <p className="text-xs text-on-surface-variant font-label tracking-wider mb-2 font-bold uppercase">Public Access</p>
+                    <h3 className="text-3xl font-headline font-bold">YES</h3>
                 </div>
             </div>
 
@@ -209,13 +209,13 @@ export default function ManageProjects() {
                                             {errors.title && <p className="text-error text-xs ml-1">{errors.title.message}</p>}
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-label text-slate-400 tracking-widest uppercase ml-1 font-bold">Live URL</label>
+                                            <label className="text-xs font-label text-slate-400 tracking-widest uppercase ml-1 font-bold">Live Link</label>
                                             <Input 
-                                                {...register('liveUrl')} 
+                                                {...register('liveLink')} 
                                                 className="w-full bg-surface-container-low border border-white/5 rounded-xl py-3 px-4 focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface" 
                                                 placeholder="https://..." 
                                             />
-                                            {errors.liveUrl && <p className="text-error text-xs ml-1">{errors.liveUrl.message}</p>}
+                                            {errors.liveLink && <p className="text-error text-xs ml-1">{errors.liveLink.message}</p>}
                                         </div>
                                     </div>
                                     
@@ -232,11 +232,11 @@ export default function ManageProjects() {
                                     <div className="space-y-2">
                                         <label className="text-xs font-label text-slate-400 tracking-widest uppercase ml-1 font-bold">Technologies (comma separated)</label>
                                         <Input 
-                                            {...register('technologies')} 
+                                            {...register('techStack')} 
                                             className="w-full bg-surface-container-low border border-white/5 rounded-xl py-3 px-4 focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface" 
                                             placeholder="React, Node, Tailwind..." 
                                         />
-                                        {errors.technologies && <p className="text-error text-xs ml-1">{errors.technologies.message}</p>}
+                                        {errors.techStack && <p className="text-error text-xs ml-1">{errors.techStack.message}</p>}
                                     </div>
 
                                     <div className="flex items-center gap-6 pt-2">
