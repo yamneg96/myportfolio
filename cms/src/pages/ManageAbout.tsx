@@ -49,7 +49,7 @@ export default function ManageAbout() {
                             </h3>
                             <div className="relative w-full aspect-square rounded-3xl overflow-hidden mb-6 bg-surface-container-highest group/img cursor-pointer border border-white/10">
                                 <img 
-                                    src={about?.avatarUrl || "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=b6e3f4"} 
+                                    src={about?.avatar?.url || "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=b6e3f4"} 
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110 opacity-80 group-hover/img:opacity-100" 
                                     alt="Profile" 
                                 />
@@ -127,7 +127,8 @@ export default function ManageAbout() {
                                     <input 
                                         type="text" 
                                         className="w-full bg-surface-container-lowest border border-white/5 rounded-2xl p-5 text-lg font-headline font-medium text-on-surface focus:ring-1 ring-primary/50 outline-none transition-all" 
-                                        defaultValue={about?.title || "Full-stack Architect specializing in neon-aesthetic interfaces."}
+                                        defaultValue={about?.title || ""}
+                                        placeholder="Hero Tagline"
                                     />
                                     <p className="text-[11px] text-primary/70 ml-1">Keep it punchy. This appears directly under your name on the hero section.</p>
                                 </div>

@@ -64,10 +64,10 @@ export default function ManageExperience() {
                                 <div className="flex-grow">
                                     <div className="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
                                         <h3 className={`text-2xl font-headline font-bold text-on-surface ${idx === 0 ? '' : 'opacity-80'}`}>
-                                            {exp.position}
+                                            {exp.role}
                                         </h3>
                                         <span className={`text-xs font-mono px-3 py-1 rounded-full uppercase tracking-tighter ${idx === 0 ? 'text-primary bg-primary/10' : 'text-on-surface-variant bg-surface-container'}`}>
-                                            {exp.startDate} &mdash; {exp.current ? 'Present' : exp.endDate}
+                                            {new Date(exp.startDate).getFullYear()} &mdash; {exp.endDate ? new Date(exp.endDate).getFullYear() : 'Present'}
                                         </span>
                                     </div>
                                     <div className={`font-medium text-lg mb-4 tracking-tight ${idx === 0 ? 'text-primary-dim' : 'text-on-surface-variant'}`}>

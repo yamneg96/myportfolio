@@ -8,11 +8,26 @@ const aboutSchema = new mongoose.Schema(
       trim: true,
       maxlength: [5000, 'Bio cannot exceed 5000 characters'],
     },
+    title: {
+      type: String,
+      required: [true, 'Title is required'],
+      trim: true,
+      maxlength: [200, 'Title cannot exceed 200 characters'],
+    },
     summary: {
       type: String,
-      required: [true, 'Summary is required'],
       trim: true,
       maxlength: [1000, 'Summary cannot exceed 1000 characters'],
+    },
+    email: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    location: {
+      type: String,
+      trim: true,
+      default: '',
     },
     avatar: {
       url: { type: String, default: '' },

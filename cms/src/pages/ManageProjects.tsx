@@ -37,7 +37,11 @@ export default function ManageProjects() {
     });
 
     const onSubmit = (data: ProjectFormValues) => {
-        console.log("Submitting Project:", data);
+        const formattedData = {
+            ...data,
+            techStack: data.techStack.split(',').map(s => s.trim()).filter(Boolean)
+        };
+        console.log("Submitting Project:", formattedData);
         toast.success("Project Entry Deployed!");
         setIsModalOpen(false);
         reset();
@@ -110,7 +114,7 @@ export default function ManageProjects() {
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-lg bg-surface-container-high overflow-hidden shrink-0">
                                             <img 
-                                                src={project.image || "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=200"} 
+                                                src={typeof project.image === 'string' ? project.image : project.image?.url || "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=200"} 
                                                 alt="Preview" 
                                                 className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" 
                                             />

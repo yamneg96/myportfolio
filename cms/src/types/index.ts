@@ -20,7 +20,7 @@ export interface Project {
   title: string;
   description: string;
   techStack: string[];
-  image: {
+  image: string | {
     url: string;
     publicId: string;
   };
@@ -67,6 +67,9 @@ export interface About {
   _id?: string;
   bio: string;
   summary: string;
+  title: string;
+  email: string;
+  location: string;
   avatar: {
     url: string;
     publicId: string;
