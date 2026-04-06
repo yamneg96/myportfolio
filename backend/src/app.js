@@ -33,6 +33,122 @@ app.use(
   })
 );
 
+// app.js or routes/ui.js
+
+app.get('/', (req, res) => {
+  res.send(`
+  <!DOCTYPE html>
+  <html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Backend UI</title>
+
+    <!-- Tailwind CDN (for quick UI preview only) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background: #060e20;
+        color: #dee5ff;
+      }
+
+      .glass-card {
+        background: rgba(25, 37, 64, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .primary-gradient {
+        background: linear-gradient(135deg, #0070eb 0%, #85adff 100%);
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #85adff 0%, #0070eb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(10px); }
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen flex items-center justify-center px-6">
+
+    <div class="max-w-5xl w-full">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-5xl font-bold gradient-text mb-4">
+          Portfolio Backend API 🚀
+        </h1>
+        <p class="text-gray-400 text-lg">
+          Your MERN API is running successfully
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="glass-card rounded-2xl p-6 hover:scale-[1.02] transition">
+          <h2 class="text-xl font-semibold mb-3 text-blue-300">Projects API</h2>
+          <p class="text-gray-400 mb-4">Manage portfolio projects</p>
+          <a href="/api/projects" class="primary-gradient px-4 py-2 rounded-lg text-white inline-block">
+            View Endpoint
+          </a>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 hover:scale-[1.02] transition">
+          <h2 class="text-xl font-semibold mb-3 text-blue-300">Experience API</h2>
+          <p class="text-gray-400 mb-4">Manage experience data</p>
+          <a href="/api/experience" class="primary-gradient px-4 py-2 rounded-lg text-white inline-block">
+            View Endpoint
+          </a>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 hover:scale-[1.02] transition">
+          <h2 class="text-xl font-semibold mb-3 text-blue-300">Skills API</h2>
+          <p class="text-gray-400 mb-4">Manage skills</p>
+          <a href="/api/skills" class="primary-gradient px-4 py-2 rounded-lg text-white inline-block">
+            View Endpoint
+          </a>
+        </div>
+
+        <div class="glass-card rounded-2xl p-6 hover:scale-[1.02] transition">
+          <h2 class="text-xl font-semibold mb-3 text-blue-300">About API</h2>
+          <p class="text-gray-400 mb-4">Manage about section</p>
+          <a href="/api/about" class="primary-gradient px-4 py-2 rounded-lg text-white inline-block">
+            View Endpoint
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-12 text-gray-500 text-sm">
+        Built with MERN + GSAP-ready UI • System Ready
+      </div>
+
+    </div>
+
+  </body>
+  </html>
+  `)
+})
+
+
+
 // ─── Rate Limiting ──────────────────────────────────────────
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes

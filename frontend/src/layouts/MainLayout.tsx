@@ -13,7 +13,7 @@ export function MainLayout({ children }: MainLayoutProps) {
   useLenis();
 
   return (
-    <div className="min-h-screen bg-surface text-on-surface selection:bg-primary/30 selection:text-primary overflow-x-hidden pt-32 relative">
+    <div className="min-h-screen bg-surface text-on-surface selection:bg-primary/30 selection:text-primary overflow-x-hidden pt-8 relative">
       <Navbar />
       <SideNav />
 
