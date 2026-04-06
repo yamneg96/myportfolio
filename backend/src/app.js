@@ -23,7 +23,8 @@ app.use(
     origin: [
       'http://localhost:5173', // Frontend (Vite)
       'http://localhost:5174', // CMS (Vite)
-      'http://localhost:3000',
+      'https://yamlak-negash.vercel.app',
+      'https://yamlak-cms.vercel.app',
       process.env.FRONTEND_URL,
       process.env.CMS_URL,
     ].filter(Boolean),
