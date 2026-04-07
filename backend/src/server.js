@@ -2,17 +2,14 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = require('./app');
-const connectDB = require('./config/db');
 const seedAdmin = require('./utils/seedAdmin');
 
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
-    // Connect to MongoDB
-    await connectDB();
-
-    // Seed admin user if not exists
+    // Seed admin user (Runs after DB connection initiated in app.js)
+    // Note: seedAdmin usually checks if the connection is ready internally
     await seedAdmin();
 
     // Start server
